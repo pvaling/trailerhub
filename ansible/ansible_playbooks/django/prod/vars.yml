@@ -1,0 +1,73 @@
+settings:
+  server: 'prod'
+  debug: false
+  template_debug: false
+  static_root: '/var/www/dreams/static/'
+  media_root: '/var/www/dreams/media/'
+  secret_key: 'q%y_3%89hj2v566o76r2qe*5tzbv612v7pkz7a0g=zju906@cr'
+  allowed_hosts:
+    - '*'
+  database_name: 'dreams_prod'
+  database_user: 'django'
+  database_password: 'P@ssw0rd'
+  database_host: 'localhost'
+  database_port: '5432'
+  campaign_cache_redis_urls: '10.203.253.5:6379'
+
+  celery_result_backend: 'django-db'
+  celery_result_dburi: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/dreams_prod'
+  broker_transport: 'sqlalchemy'
+  broker_host: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/dreams_prod'
+
+  stat_db_sql: "host='localhost' dbname='td_stats_storage' user='td_stats' password='P@ssw0rd'"
+  stat_db_api: 'http://10.203.253.5:9003/data_provider/?type='
+  olap_db_api: 'http://10.203.253.5:9003/olap_data_provider/?type='
+
+  logfile_root: '/var/log/dreams/django_logging/'
+  raven_dsn: 'http://618e4b31effd4f15be46ccce3e0b3f7f:2044d34c427c40fd9f691e4ae50fe86c@10.203.253.3:9000/8'
+  td_url_for_selenium: 'http://10.203.253.5'
+  login_for_selenium: 'admin@vi.com'
+  password_for_selenium: 'P@ssw0rd'
+  selenium_hub_url: 'http://10.203.253.120:4444/wd/hub'
+  backend_url: 'http://10.203.253.5:8080'
+  playlists_dir_path: '/var/data/playlists'
+  tv_mix_users_rbmail: 84
+  tv_mix_users_vimb: 84
+  tv_mix_users_adfox: 84
+  td_public_domain: 'https://td.nsc.media'
+  selenium_for_api_url: 'http://10.203.225.24:4444/wd/hub'
+  test_run_mode: 'hub'
+  platform_tracking_api: 'http://10.203.253.5:9003'
+  platform_api_token: 'AFE34-FDFKBL3-SA-FDSFSE'
+
+  dmp_url: 'http://10.203.225.56'
+  dmp_login: 'petr.valing@gmail.com'
+  dmp_password: 'Qwerty1@3'
+  dmp_api_external_url: 'https://v.nsc-lab.io/pxl'
+  dmp_cache_api_url: 'http://10.203.225.49:9000/get_profile'
+  dmp_enrichment_api_url: 'http://10.203.225.49:9001/enrich_user'
+  dmp_profile_status_url: 'http://ads.nsc-lab.io/td/targeting_bypass/'
+
+  minio_endpoint: '10.203.225.3:9000'
+  minio_access_key: 'minio'
+  minio_secret_key: 'minio12345'
+  use_x_accel_redirect: true
+  ext_sync_events_url_host: 'http://10.203.253.5:9003'
+
+uwsgi:
+  chdir: '/opt/projects/dreams'
+  pidfile: '/var/run/uwsgi/dreams/dreams_uwsgi.pid'
+  socket: '/var/run/uwsgi/dreams/dreams_uwsgi.sock'
+  virtualenv: '/usr/local/envs/dreams'
+  logto: '/var/log/uwsgi/dreams_log'
+  uid: 'dreams'
+  gid: 'dreams'
+  pythonpath_dot: '.'
+  pythonpath: 'dreams'
+  module: 'dreams.wsgi:application'
+  callable: 'app'
+  master: 'true'
+  processes: '20'
+  harakiri: '600'
+  buffer_size: '32768'
+  chmod_socket: '777'

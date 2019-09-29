@@ -1,0 +1,17 @@
+[uwsgi]
+chdir={{ uwsgi.chdir }}
+pidfile={{ uwsgi.pidfile }}
+socket={{ uwsgi.socket }}
+virtualenv={{ uwsgi.virtualenv }}
+logto={{ uwsgi.logto }}
+uid={{ uwsgi.uid }}
+gid={{ uwsgi.gid }}
+pythonpath={{ uwsgi.pythonpath_dot }}
+pythonpath={{ uwsgi.pythonpath }}
+module={{ uwsgi.module }}
+callable={{ uwsgi.callable }}
+master={{ uwsgi.master }}
+processes={{ uwsgi.processes }}
+harakiri={{ uwsgi.harakiri }}
+buffer-size={{ uwsgi.buffer_size }}
+chmod-socket={{ uwsgi.chmod_socket }}
