@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vmap:VMAP xmlns:vmap="http://www.iab.net/videosuite/vmap" version="1.0">
+ <vmap:AdBreak timeOffset="start" breakType="linear" breakId="preroll">
+  <vmap:AdSource id="preroll-ad-1" allowMultipleAds="false" followRedirects="true">
+   <vmap:AdTagURI templateType="vast3">
+       <![CDATA[http://localhost:8005/vast_playlist.xml]]>
+   </vmap:AdTagURI>
+  </vmap:AdSource>
+ </vmap:AdBreak>
+ <vmap:AdBreak timeOffset="00:00:15.000" breakType="linear" breakId="midroll-1">
+  <vmap:AdSource id="midroll-1-ad-1" allowMultipleAds="false" followRedirects="true">
+   <vmap:AdTagURI templateType="vast3">
+       <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=443&zone_id=8591&pid=68750&vwd=865]]>
+   </vmap:AdTagURI>
+  </vmap:AdSource>
+ </vmap:AdBreak>
+ <vmap:AdBreak timeOffset="00:00:15.000" breakType="linear" breakId="midroll-1">
+  <vmap:AdSource id="midroll-1-ad-2" allowMultipleAds="false" followRedirects="true">
+   <vmap:AdTagURI templateType="vast3">
+       <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=443&zone_id=8591&pid=68750&vwd=865]]>
+   </vmap:AdTagURI>
+  </vmap:AdSource>
+ </vmap:AdBreak>
+ <vmap:AdBreak timeOffset="00:00:15.000" breakType="linear" breakId="midroll-1">
+  <vmap:AdSource id="midroll-1-ad-3" allowMultipleAds="false" followRedirects="true">
+   <vmap:AdTagURI templateType="vast3">
+       <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=443&zone_id=8591&pid=68750&vwd=865]]>
+   </vmap:AdTagURI>
+  </vmap:AdSource>
+ </vmap:AdBreak>
+ <vmap:AdBreak timeOffset="end" breakType="linear" breakId="postroll">
+  <vmap:AdSource id="postroll-ad-1" allowMultipleAds="false" followRedirects="true">
+   <vmap:AdTagURI templateType="vast3">
+       <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=443&zone_id=8591&pid=68750&vwd=865]]>
+   </vmap:AdTagURI>
+  </vmap:AdSource>
+ </vmap:AdBreak>
+</vmap:VMAP>

@@ -2,12 +2,12 @@ settings:
   server: 'prod'
   debug: false
   template_debug: false
-  static_root: '/var/www/dreams/static/'
-  media_root: '/var/www/dreams/media/'
+  static_root: '/var/www/django/static/'
+  media_root: '/var/www/django/media/'
   secret_key: 'q%y_3%89hj2v566o76r2qe*5tzbv612v7pkz7a0g=zju906@cr'
   allowed_hosts:
     - '*'
-  database_name: 'dreams_prod'
+  database_name: 'django_prod'
   database_user: 'django'
   database_password: 'P@ssw0rd'
   database_host: 'localhost'
@@ -15,15 +15,15 @@ settings:
   campaign_cache_redis_urls: '10.203.253.5:6379'
 
   celery_result_backend: 'django-db'
-  celery_result_dburi: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/dreams_prod'
+  celery_result_dburi: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/django_prod'
   broker_transport: 'sqlalchemy'
-  broker_host: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/dreams_prod'
+  broker_host: 'postgresql://django:P@ssw0rd@127.0.0.1:5432/django_prod'
 
   stat_db_sql: "host='localhost' dbname='td_stats_storage' user='td_stats' password='P@ssw0rd'"
   stat_db_api: 'http://10.203.253.5:9003/data_provider/?type='
   olap_db_api: 'http://10.203.253.5:9003/olap_data_provider/?type='
 
-  logfile_root: '/var/log/dreams/django_logging/'
+  logfile_root: '/var/log/django/django_logging/'
   raven_dsn: 'http://618e4b31effd4f15be46ccce3e0b3f7f:2044d34c427c40fd9f691e4ae50fe86c@10.203.253.3:9000/8'
   td_url_for_selenium: 'http://10.203.253.5'
   login_for_selenium: 'admin@vi.com'
@@ -55,16 +55,16 @@ settings:
   ext_sync_events_url_host: 'http://10.203.253.5:9003'
 
 uwsgi:
-  chdir: '/opt/projects/dreams'
-  pidfile: '/var/run/uwsgi/dreams/dreams_uwsgi.pid'
-  socket: '/var/run/uwsgi/dreams/dreams_uwsgi.sock'
-  virtualenv: '/usr/local/envs/dreams'
-  logto: '/var/log/uwsgi/dreams_log'
-  uid: 'dreams'
-  gid: 'dreams'
+  chdir: '/opt/projects/django'
+  pidfile: '/var/run/uwsgi/django/django_uwsgi.pid'
+  socket: '/var/run/uwsgi/django/django_uwsgi.sock'
+  virtualenv: '/usr/local/envs/django'
+  logto: '/var/log/uwsgi/django_log'
+  uid: 'django'
+  gid: 'django'
   pythonpath_dot: '.'
-  pythonpath: 'dreams'
-  module: 'dreams.wsgi:application'
+  pythonpath: 'django'
+  module: 'trailerhub.wsgi:application'
   callable: 'app'
   master: 'true'
   processes: '20'

@@ -38,17 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.instagram',
-    # 'allauth.socialaccount.providers.vk',
     'core',
-    'rest_api',
-    'django_extensions',
-    'sslserver'
 ]
 
 SITE_ID = 1
@@ -73,7 +63,7 @@ AUTHENTICATION_BACKENDS = (
 
 # LOGIN_REDIRECT_URL = '/'
 
-ROOT_URLCONF = 'dreams.urls'
+ROOT_URLCONF = 'trailerhub.urls'
 
 TEMPLATES = [
     {
@@ -91,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'dreams.wsgi.application'
+WSGI_APPLICATION = 'trailerhub.wsgi.application'
 
 
 # Database
@@ -142,3 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/var/www/django/static/'

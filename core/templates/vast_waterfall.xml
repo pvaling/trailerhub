@@ -1,0 +1,44 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+    <Ad id="1">
+        <Wrapper>
+            <AdSystem>AD_SYSTEM 1</AdSystem>
+            <VASTAdTagURI>
+                   <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=471&zone_id=8644&pid=6882498989]]>
+            </VASTAdTagURI>
+            <Error>
+                <![CDATA[https://www.error_tracker.com]]>
+            </Error>
+            <Extensions>
+                <Extension type="waterfall" fallback_index="0"/>
+            </Extensions>
+        </Wrapper>
+    </Ad>
+    <Ad id="2">
+        <Wrapper>
+            <AdSystem>AD_SYSTEM 1</AdSystem>
+            <VASTAdTagURI>
+                   <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=471&zone_id=8644&pid=68824]]>
+            </VASTAdTagURI>
+            <Error>
+                <![CDATA[https://www.error_tracker.com]]>
+            </Error>
+            <Extensions>
+                <Extension type="waterfall" fallback_index="0"/>
+            </Extensions>
+        </Wrapper>
+    </Ad>
+    <Ad id="3">
+        <Wrapper>
+            <AdSystem>AD_SYSTEM 2</AdSystem>
+            <VASTAdTagURI>
+               <![CDATA[https://ads.nsc-lab.io/ads/vast/get?out=3&opc=57baef95b53c4b5d6c57d5e8&cid=100&cnt=1&dur=0&adid=&appid=&site_id=443&zone_id=8591&pid=68750&vwd=865]]>
+            </VASTAdTagURI>
+            <Error>
+                <![CDATA[https://www.error_tracker.com]]>
+            </Error>
+            <Extensions>
+                <Extension type="waterfall" fallback_index="1"/>
+            </Extensions>
+        </Wrapper>
+    </Ad>
+</VAST>
