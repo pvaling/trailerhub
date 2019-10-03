@@ -42,11 +42,11 @@ class Command(BaseCommand):
                 year=2019
             )
             new_trailer.cover.save(
-                str(uuid.uuid4()) + '.' + item[5].split('.')[-1],
+                str(uuid.uuid4()) + '.' + item[4].split('.')[-1],
                 File(open(image[0], 'rb'))
             )
             new_trailer.video.save(
-                str(uuid.uuid4()) + '.' + item[4].split('.')[-1],
+                str(uuid.uuid4()) + '.' + item[5].split('.')[-1],
                 File(open(video[0], 'rb'))
             )
 
