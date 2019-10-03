@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from ads_manager.models import VmapConfig, VastFallbackConfig, VmapElement
-from trailerhub.settings import ABSOLUTE_URL
+from trailerhub.main import ABSOLUTE_URL
 
 
 def vmap(request, id):
