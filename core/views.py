@@ -2,9 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.views.decorators.cache import cache_page
+
 from core.models import Trailer
 
 
+@cache_page(timeout=10)
 def index(request):
 
 
@@ -19,7 +22,7 @@ def index(request):
 
     return render(request, template_name='index.html', context=context)
 
-
+@cache_page(timeout=10)
 def detail(request, id):
     trailer = Trailer.objects.get(id=id)
     video_url = trailer.video.url
