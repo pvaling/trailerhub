@@ -27,6 +27,10 @@ class Trailer(UGCMixin):
     source_id = CharField(max_length=256, default='', null=True)
     imdb_id = CharField(max_length=256, default='', null=True)
 
+    @property
+    def ui_badge(self):
+        return None
+
     def __str__(self):
         return self.label
 

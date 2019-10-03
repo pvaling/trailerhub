@@ -1,0 +1,11 @@
+<div class="post wrap-vid">
+    {% include 'frontpage/video_item_zoom.html' with trailer_model=wrap_item %}
+    <div class="wrapper">
+        <h5 class="vid-name"><a href="#">{{ wrap_item.label|truncatechars_html:15 }}</a></h5>
+        <div class="info">
+            <h6>By <a href="#">Kelvin</a></h6>
+            <span><i class="fa fa-calendar"></i>25/3/2015</span>
+            <span><i class="fa fa-heart"></i>1,200</span>
+        </div>
+    </div>
+</div>

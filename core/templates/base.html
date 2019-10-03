@@ -9,11 +9,10 @@
     <meta name="description" content="Free Bootstrap Themes by Zerotheme dot com - Free Responsive Html5 Templates">
     <meta name="author" content="https://www.Zerotheme.com">
 
-    <title>KoolTube | Free Bootstrap Themes by Zerotheme.com</title>
+    <title>TrailerHub | Лучшие трейлеры и киноновинки</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}"  type="text/css">
-{#    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">#}
 
 	<!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
@@ -50,9 +49,9 @@
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<ul class="list-inline top-link link">
-						<li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="contact.html"><i class="fa fa-comments"></i> Contact</a></li>
-						<li><a href="#"><i class="fa fa-question-circle"></i> FAQ</a></li>
+						<li><a href="/"><i class="fa fa-home"></i> Главная</a></li>
+						<li><a href="/"><i class="fa fa-comments"></i> Контакты</a></li>
+						<li><a href="/"><i class="fa fa-question-circle"></i> FAQ</a></li>
 					</ul>
 				</div>
 			</div>
@@ -62,18 +61,18 @@
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">Категории</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+					<li><a href="/"><i class="fa fa-home"></i> Главная</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Account</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="archive.html">Login</a></li>
-									<li><a href="archive.html">Register</a></li>
+									<li><a href="/">Вход</a></li>
+									<li><a href="/">Регистрация</a></li>
 								</ul>
 							</div>
 						</div>
@@ -125,7 +124,7 @@
 		</div>
 	</nav>
 
-	{% include 'carousel.html' %}
+	{% include 'carousel.html' with items=carousel %}
 </header>
 <!-- Header -->
 

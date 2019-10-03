@@ -1,101 +1,20 @@
 {% load static %}
 <div class="header-slide">
-		<div id="owl-demo" class="owl-carousel">
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/2.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/3.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/4.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/5.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/6.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/7.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/8.jpg' %}" />
-				</div>
-			</div>
-			<div class="item">
-				<div class="zoom-container">
-					<div class="zoom-caption">
-						<span>Video's Tag</span>
-						<a href="single.html">
-							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
-						</a>
-						<p>Video's Name</p>
-					</div>
-					<img src="{% static 'core/images/9.jpg' %}" />
-				</div>
-			</div>
-		</div>
-	</div>
+    <div id="owl-demo" class="owl-carousel">
+        {% for item in items %}
+            <div class="item">
+                {% include 'frontpage/video_item_zoom.html' with trailer_model=item %}
+{#                <div class="zoom-container">#}
+{#                    <div class="zoom-caption">#}
+{#                        <span>{{ item.ui_badge|default_if_none:'' }}</span>#}
+{#                        <a href="{% url 'trailer_detail' id=item.id %}">#}
+{#                            <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>#}
+{#                        </a>#}
+{#                        <p>{{ item.label }}</p>#}
+{#                    </div>#}
+{#                    <img src="/{{ item.cover.url }}"/>#}
+{#                </div>#}
+            </div>
+        {% endfor %}
+    </div>
+</div>
