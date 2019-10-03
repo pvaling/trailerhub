@@ -57,6 +57,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://imasdk.googleapis.com',
+    'https://imasdk.googleapis.com',
 )
 
 # CORS_ORIGIN_ALLOW_ALL = True
