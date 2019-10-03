@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 from core.models import Trailer
 import requests
 import ssl
+import urllib.request
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -30,25 +31,29 @@ class Command(BaseCommand):
         }
 
         response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+        results = response.json()
 
-        for item in response.json():
-            import urllib.request
-            video = urllib.request.urlretrieve('http:' + item[5])
-            image = urllib.request.urlretrieve('http:' + item[4])
+        for item in results:
+            if not Trailer.objects.filter(source_id=item[0]).count():
 
-            new_trailer = Trailer(
-                label=item[9],
-                source_id=item[0],
-                year=2019
-            )
-            new_trailer.cover.save(
-                str(uuid.uuid4()) + '.' + item[4].split('.')[-1],
-                File(open(image[0], 'rb'))
-            )
-            new_trailer.video.save(
-                str(uuid.uuid4()) + '.' + item[5].split('.')[-1],
-                File(open(video[0], 'rb'))
-            )
+                video = urllib.request.urlretrieve('http:' + item[5])
+                image = urllib.request.urlretrieve('http:' + item[4])
 
-            new_trailer.save()
-            print(new_trailer)
+                new_trailer = Trailer(
+                    label=item[9],
+                    source_id=item[0],
+                    year=2019
+                )
+                new_trailer.cover.save(
+                    str(uuid.uuid4()) + '.' + item[4].split('.')[-1],
+                    File(open(image[0], 'rb'))
+                )
+                new_trailer.video.save(
+                    str(uuid.uuid4()) + '.' + item[5].split('.')[-1],
+                    File(open(video[0], 'rb'))
+                )
+
+                new_trailer.save()
+                print(new_trailer)
+
+        return
