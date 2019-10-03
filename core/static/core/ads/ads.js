@@ -18,7 +18,7 @@ var player = videojs('content_video');
 
 var options = {
   id: 'content_video',
-  adTagUrl: 'http://localhost:8005/ads/vmap/1/xml'
+  adTagUrl: 'https://trailerhub.valing.dev/ads/vmap/1/xml'
 };
 
 player.ima(options);
