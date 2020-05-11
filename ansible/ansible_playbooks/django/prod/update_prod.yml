@@ -1,6 +1,6 @@
 ---
 - name: Deploy dreams app
-  hosts: dreams-servers-stand
+  hosts: django-servers-prod
   gather_facts: false
   vars_files:
     - vars.yml
@@ -8,10 +8,10 @@
 
   - name: pull changes
     become: yes
-    become_user: dreams
+    become_user: django
     git:
-      repo: git@github.com:pvaling/dreams.git
-      dest: /opt/projects/dreams/
+      repo: git@github.com:pvaling/trailerhub.git
+      dest: /opt/projects/django/
       version: dev
       force: yes
       accept_hostkey: yes
@@ -21,19 +21,36 @@
 
   - name: pip install
     become: yes
-    become_user: dreams
+    become_user: django
     pip:
-      requirements: /opt/projects/dreams/requirements.txt
-      virtualenv: /usr/local/envs/dreams/
+      requirements: /opt/projects/django/requirements.txt
+      virtualenv: /usr/local/envs/django/
+
+
+  - name: migrate
+    become: yes
+    become_user: django
+    django_manage:
+      command: migrate
+      app_path: /opt/projects/django/
+      virtualenv: /usr/local/envs/django/
+
+  - name: collect static
+#    become: yes
+#    become_user: django
+    django_manage:
+      command: collectstatic
+      app_path: /opt/projects/django/
+      virtualenv: /usr/local/envs/django/
 
   - name: restart uwsgi via supervisor
     become: yes
     supervisorctl:
       state: restarted
-      name: "dreams_uwsgi_prod"
+      name: "django_uwsgi_prod"
 
   # - name: restart default queue via supervisor
   #   become: yes
   #   supervisorctl:
   #     state: restarted
-  #     name: "dreams_celery_prod_default"
+  #     name: "django_celery_prod_default"
