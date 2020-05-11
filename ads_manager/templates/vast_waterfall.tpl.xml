@@ -1,0 +1,18 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+    {% for url in urls %}
+            <Ad id="{{ forloop.counter }}">
+            <Wrapper>
+                <AdSystem>AD_SYSTEM {{ forloop.counter }}</AdSystem>
+                <VASTAdTagURI>
+                       <![CDATA[{{ url }}]]>
+                </VASTAdTagURI>
+                <Error>
+                    <![CDATA[https://www.error_tracker.com]]>
+                </Error>
+                <Extensions>
+                    <Extension type="waterfall" fallback_index="{{ forloop.counter0 }}"/>
+                </Extensions>
+            </Wrapper>
+    </Ad>
+    {% endfor %}
+</VAST>

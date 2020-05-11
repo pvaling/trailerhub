@@ -1,0 +1,10 @@
+<div class="zoom-container">
+    <div class="zoom-caption">
+        <span>{{ trailer_model.ui_badge|default_if_none:"" }}</span>
+        <a href="{% url 'trailer_detail' id=trailer_model.id %}">
+            <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+        </a>
+        <p>{{ trailer_model.label|truncatechars_html:15 }}</p>
+    </div>
+    <img src="{{ trailer_model.cover.url }}"/>
+</div>

@@ -1,0 +1,195 @@
+# Do not run without admin permission, set hosts as needed
+---
+- name: prepare vm for django
+  hosts: django-servers-prod
+  gather_facts: false
+  become: yes
+  vars:
+    project_name: django
+
+  tasks:
+    - name: Update all packages to the latest version
+      apt:
+        update_cache: yes
+
+    - name: install required packages
+      apt:
+        name: "{{ item }}"
+      with_items:
+       - gcc
+       - gettext
+       - python3.6-dev
+       - python3-venv
+       - supervisor
+       - nginx
+
+    - name: add django Linux group
+      group:
+        name: django
+
+    - name: add django Linux user
+      user:
+        name: django
+        shell: /bin/bash
+        groups: django
+        append: yes
+
+    - name: mkdir for envs
+      file:
+        path: "/usr/local/envs/"
+        state: directory
+        owner: django
+        group: django
+
+    - name: create virtualenv
+      command: "python3.6 -m venv django"
+      args:
+        chdir: "/usr/local/envs/"
+
+    - name: change env owner from root
+      file:
+        path: "/usr/local/envs/django"
+        state: directory
+        recurse: yes
+        owner: django
+        group: django
+
+    - name: create www folder
+      file:
+        path: "/var/www/django/"
+        state: directory
+        owner: django
+        group: django
+        mode: 0775
+
+    - name: create media and static folders
+      file:
+        path: "/var/www/django/{{ item }}"
+        state: directory
+        owner: django
+        group: django
+        mode: 0775
+      with_items:
+        - media
+        - static
+
+    - name: get pip and install pip3.6 global
+      shell: "curl https://bootstrap.pypa.io/get-pip.py | /usr/bin/python3.6"
+
+    - name: get pip and install pip global
+      shell: "curl https://bootstrap.pypa.io/get-pip.py | /usr/bin/python2.7"
+
+    - name: install uwsgi
+      pip:
+        executable: pip3.6
+        name: uwsgi
+
+    - name: create django folder
+      file:
+        path: "/opt/projects/django"
+        state: directory
+        owner: django
+        group: django
+        mode: 0775
+
+    - name: create run directory for uwsgi
+      file:
+        path: "/var/run/uwsgi"
+        state: directory
+
+    - name: create run directory for uwsgi socket and pid
+      file:
+        path: "/var/run/uwsgi/django"
+        state: directory
+        owner: django
+        group: django
+        mode: 0775
+
+    - name: create directory for logs
+      file:
+        path: "/var/log/uwsgi/"
+        state: directory
+        owner: django
+        group: django
+        mode: 0755
+
+    - name: install nginx
+      apt:
+        name: nginx
+
+    - name: add nginx config to sites enabled
+      template:
+        src: "django_nginx.conf"
+        dest: "/etc/nginx/sites-available/django.conf"
+        force: yes
+
+    - name: make link
+      file:
+        src: "/etc/nginx/sites-available/django.conf"
+        dest: "/etc/nginx/sites-enabled/django.conf"
+        state: link
+        force: yes
+
+    - name: create uwsgi sites directory
+      file:
+        path: "/etc/uwsgi/sites/"
+        state: directory
+
+    - name: create folder for supervisor
+      file:
+        path: "/etc/supervisor/conf.d"
+        state: directory
+
+    - name: enable supervisor
+      command: systemctl enable supervisor
+
+    - name: start supervisor
+      command: supervisorctl start
+
+    - name: add main supervisord config
+      template:
+        src: "supervisord.conf"
+        dest: "/etc/supervisor/supervisord.conf"
+        force: yes
+
+    - name: add django config to supervisor
+      template:
+        src: "django_supervisor.conf"
+        dest: "/etc/supervisor/conf.d/django.conf"
+        force: yes
+
+    - name: add django celery config to supervisor
+      template:
+        src: "django_celery_supervisor.conf"
+        dest: "/etc/supervisor/conf.d/django_celery.conf"
+        force: yes
+
+    - name: add django config autocreate papth  uwsgi to /var/run/
+      template:
+        src: "uwsgi_tmpfs.conf"
+        dest: "/usr/lib/tmpfiles.d/uwsgi.conf"
+        force: yes
+
+
+    - name: create log folders for supervisor
+      file:
+        path: "/var/log/{{ item }}"
+        state: directory
+        owner: django
+        group: django
+        mode: 0755
+      with_items:
+        - celery
+        - django
+        - "django/django_logging"
+
+    - name: remove default nginx config
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/nginx/sites-available/default
+        - /etc/nginx/sites-enabled/default
+
+    - name: restart nginx
+      command: service nginx restart

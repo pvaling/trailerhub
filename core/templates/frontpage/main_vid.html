@@ -1,0 +1,10 @@
+<div class="zoom-container">
+    <div class="zoom-caption">
+        <span>{{ main_vid.ui_badge|default_if_none:"" }}</span>
+        <a href="{% url 'trailer_detail' id=main_vid.id %}">
+            <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+        </a>
+        <p>{{ main_vid.label }}</p>
+    </div>
+    <img src="{{ main_vid.cover.url }}"/>
+</div>

@@ -1,0 +1,32 @@
+<!---- Start Widget ---->
+
+                <!---- Start Widget ---->
+                <div class="widget wid-tags">
+                    <div class="heading"><h4><i class="fa fa-tags"></i> Жанры</h4></div>
+                    <div class="content">
+                        <ul class="list-inline">
+                            <li><a href="#">комедия ,</a></li>
+                            <li><a href="#">боевик ,</a></li>
+                            <li><a href="#">драма ,</a></li>
+                            <li><a href="#">ужасы ,</a></li>
+                            <li><a href="#">триллер ,</a></li>
+                            <li><a href="#">мультфильм ,</a></li>
+                            <li><a href="#">мелодрама ,</a></li>
+                            <li><a href="#">романтический</a></li>
+                        </ul>
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <!---- Start Widget ---->
+                <div class="widget wid-post">
+                    <div class="heading"><h4><i class="fa fa-globe"></i> В этом жанре</h4></div>
+                    <div class="content">
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.1 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.2 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.3 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.3 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.3 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.3 %}
+                        {% include 'frontpage/featured_video_post_wrap.html' with wrap_item=random_list.3 %}
+                    </div>
+                </div>

@@ -1,0 +1,75 @@
+---
+- name: Deploy django app
+  hosts: django-servers-prod
+  gather_facts: false
+  vars_files:
+    - vars.yml
+  tasks:
+
+  - name: pull changes
+    become: yes
+    become_user: django
+    git:
+      repo: git@github.com:pvaling/trailerhub.git
+      dest: /opt/projects/django/
+      version: dev
+      force: yes
+      accept_hostkey: yes
+      update: yes
+      recursive: yes
+      remote: origin
+
+  - name: pip install
+    become: yes
+    become_user: django
+    pip:
+      requirements: /opt/projects/django/requirements.txt
+      virtualenv: /usr/local/envs/django/
+
+  - name: render settings.py
+    become: yes
+    become_user: django
+    template:
+      src: ../templates/settings.py.j2
+      dest: /opt/projects/django/trailerhub/settings.py
+      force: yes
+
+  - name: render django-uwsgi.ini
+    become: yes
+    template:
+      src: ../templates/django-uwsgi.ini.j2
+      dest: /etc/uwsgi/sites/django-uwsgi.ini
+      force: yes
+
+  # - name: collect static
+  #   django_manage:
+  #     command: collectstatic
+  #     app_path: /opt/projects/django/
+  #     virtualenv: /usr/local/envs/django/
+
+  - name: migrate
+    become: yes
+    become_user: django
+    django_manage:
+      command: migrate
+      app_path: /opt/projects/django/
+      virtualenv: /usr/local/envs/django/
+
+  # - name: compile translated strings
+  #   django_manage:
+  #     command: compilemessages
+  #     app_path: /opt/projects/django/
+  #     virtualenv: /usr/local/envs/django/
+  #     settings: django.settings.main
+
+  - name: restart uwsgi via supervisor
+    become: yes
+    supervisorctl:
+      state: restarted
+      name: "django_uwsgi_prod"
+
+  - name: restart default queue via supervisor
+    become: yes
+    supervisorctl:
+      state: restarted
+      name: "django_celery_prod_default"
